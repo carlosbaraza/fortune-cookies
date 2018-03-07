@@ -1,17 +1,32 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
+import React from "react";
+import { render } from "react-dom";
+import { FortuneCookie } from "./FortuneCookie";
+import "./styles.css";
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center',
-};
+export class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { isOpen: false };
+  }
 
-const App = () => (
-  <div style={styles}>
-    <Hello name="CodeSandbox" />
-    <h2>Start editing to see some magic happen {'\u2728'}</h2>
-  </div>
-);
+  toggleOpen = () => {
+    console.log("toggling");
+    this.setState({ isOpen: !this.state.isOpen });
+  };
 
-render(<App />, document.getElementById('root'));
+  render() {
+    const { isOpen } = this.state;
+    return (
+      <div className="App">
+        <FortuneCookie isOpen={isOpen} onClick={this.toggleOpen} />
+        {isOpen && (
+          <div className="FortuneCookieMessage">
+            <p>The fortune you seek is in another cookie.</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+render(<App />, document.getElementById("root"));
