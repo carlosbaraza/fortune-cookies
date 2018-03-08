@@ -9,19 +9,25 @@ export class App extends React.Component {
     this.state = { isOpen: false };
   }
 
-  toggleOpen = () => {
-    console.log("toggling");
-    this.setState({ isOpen: !this.state.isOpen });
+  setOpen = () => {
+    this.setState({ isOpen: true });
+  };
+
+  setClosed = () => {
+    this.setState({ isOpen: false });
   };
 
   render() {
     const { isOpen } = this.state;
     return (
       <div className="App">
-        <FortuneCookie isOpen={isOpen} onClick={this.toggleOpen} />
+        <FortuneCookie isOpen={isOpen} onClick={this.setOpen} />
         {isOpen && (
           <div className="FortuneCookieMessage">
             <p>The fortune you seek is in another cookie.</p>
+            <button className="FortuneCookieMore" onClick={this.setClosed}>
+              Still hungry?
+            </button>
           </div>
         )}
       </div>

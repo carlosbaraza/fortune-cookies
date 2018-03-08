@@ -10,15 +10,11 @@
   justify-content: center;
 }
 
-.FortuneCookie:hover {
-  cursor: pointer;
-  background: none;
-}
-
 .FortuneCookie--open {
   top: -75px;
 }
 
 .FortuneCookie img {
   height: 100%;
+  cursor: pointer;
 }
