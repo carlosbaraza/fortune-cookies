@@ -2,11 +2,20 @@ import React from "react";
 import { render } from "react-dom";
 import { FortuneCookie } from "./FortuneCookie";
 import "./styles.css";
+import fortuneMessages from "./fortune-messages.json";
+
+function randomMessage() {
+  const randomMessageIndex = Math.floor(Math.random() * fortuneMessages.length);
+  return fortuneMessages[randomMessageIndex];
+}
 
 export class App extends React.Component {
   constructor() {
     super();
-    this.state = { isOpen: false };
+    this.state = {
+      isOpen: false,
+      message: randomMessage()
+    };
   }
 
   setOpen = () => {
@@ -14,7 +23,10 @@ export class App extends React.Component {
   };
 
   setClosed = () => {
-    this.setState({ isOpen: false });
+    this.setState({
+      isOpen: false,
+      message: randomMessage()
+    });
   };
 
   render() {
@@ -24,7 +36,7 @@ export class App extends React.Component {
         <FortuneCookie isOpen={isOpen} onClick={this.setOpen} />
         {isOpen && (
           <div className="FortuneCookieMessage">
-            <p>The fortune you seek is in another cookie.</p>
+            <p>{this.state.message}</p>
             <button className="FortuneCookieMore" onClick={this.setClosed}>
               Still hungry?
             </button>
